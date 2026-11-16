@@ -32,10 +32,19 @@ class Sequential:
             yield from layer.params_and_grads()
 
 class Linear(Layer):
-    def __init__(self, in_features: int, out_features: int):
+    def __init__(
+        self, 
+        in_features: int, 
+        out_features: int, 
+        rng: np.random.Generator | None = None,
+    ):
+        if rng is None:
+            rng = np.random.default_rng()
+
+            
         # He initialization scaled for ReLU stability
         scale = np.sqrt(2.0/ in_features)
-        self.W = (np.random.randn(in_features, out_features) * scale).astype(np.float32)
+        self.W = rng.standard_normal((in_features, out_features), dtype=np.float32) * scale
         self.b = np.zeros(out_features, dtype=np.float32)
         self.dW = np.zeros_like(self.W)
         self.db = np.zeros_like(self.b)
