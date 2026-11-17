@@ -13,7 +13,7 @@ model = Sequential([
     Linear(32, 3, rng=rng),
 ])
 criterion = SoftmaxCrossEntropy()
-optimizer = SGD(model.parameters(), lr=0.1, momentum=0.9)
+optimizer = SGD(model.parameters(), lr=0.02, momentum=1)
 
 for epoch in range(50):
     optimizer.zero_grad()
@@ -22,6 +22,8 @@ for epoch in range(50):
     dlogits = criterion.backward()
     model.backward(dlogits)
     optimizer.step()
+    if(epoch == 10 or epoch == 20 or epoch == 30 or epoch == 40):
+        print(f"loss after {epoch} steps: {loss:.6f}")
 
 print(f"Final loss after 50 steps: {loss:.6f}")  # Should print < 0.01
 

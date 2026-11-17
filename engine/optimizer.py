@@ -22,4 +22,3 @@ class SGD:
         for _, grad in self.params:
             grad.fill(0.0)
 
-            

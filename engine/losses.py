@@ -12,7 +12,7 @@ class SoftmaxCrossEntropy:
         returns: scalar float loss averaged over batch N
         """
         batch_size = logits.shape[0]
-        self.tragets = targets
+        self.targets = targets
 
         # shift logits by row max for numerical stability before exp()
         shifted = logits - np.max(logits, axis=1, keepdims=True)

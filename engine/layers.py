@@ -31,6 +31,8 @@ class Sequential:
         for layer in self.layers:
             yield from layer.params_and_grads()
 
+
+
 class Linear(Layer):
     def __init__(
         self, 
@@ -76,14 +78,4 @@ class ReLU(Layer):
     
 
 
-
-
-def Linear():
-    return 0
-
-def ReLU():
-    return 0
-
-def Sequential():
-    return 0
 
